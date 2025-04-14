@@ -1,5 +1,6 @@
 package me.h1dd3nxn1nja.chatmanager.commands;
 
+import com.purityvanilla.pvcore.PVCore;
 import com.ryderbelserion.chatmanager.api.chat.UserRepliedData;
 import com.ryderbelserion.chatmanager.enums.Messages;
 import com.ryderbelserion.core.api.support.PluginManager;
@@ -179,6 +180,9 @@ public class CommandMessage implements CommandExecutor, TabCompleter {
 		}
 
 		if (essentialsCheck(player, target)) return true;
+
+		// Check pvCore for ignored status
+		if (PVCore.getAPI().getPlayerAPI().isPlayerIgnored(target, player) && !player.hasPermission("pvchat.ignore.bypass")) return true;
 
 		final Plugin genericVanish = PluginManager.getPlugin("GenericVanish");
 
