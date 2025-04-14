@@ -6,6 +6,8 @@ project.group = "${rootProject.group}"
 
 repositories {
     maven("https://repo.essentialsx.net/releases/")
+
+    mavenLocal()
 }
 
 dependencies {
@@ -27,6 +29,8 @@ dependencies {
         exclude("org.spigotmc", "spigot-api")
         exclude("org.bstats", "bstats-bukkit")
     }
+
+    compileOnly("com.purityvanilla", "pvCore", "1.0")
 }
 
 tasks {
