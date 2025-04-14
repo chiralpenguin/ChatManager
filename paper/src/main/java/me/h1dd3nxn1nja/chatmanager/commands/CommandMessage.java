@@ -1,5 +1,6 @@
 package me.h1dd3nxn1nja.chatmanager.commands;
 
+import com.purityvanilla.pvcore.PVCore;
 import com.ryderbelserion.chatmanager.api.chat.UserRepliedData;
 import com.ryderbelserion.chatmanager.enums.Files;
 import com.ryderbelserion.chatmanager.enums.Messages;
@@ -178,6 +179,9 @@ public class CommandMessage extends Global implements CommandExecutor, TabComple
 		}
 
 		if (essentialsCheck(player, target)) return true;
+
+        // Check pvCore for ignored status
+        if (PVCore.getAPI().getPlayerAPI().isPlayerIgnored(target, player) && !player.hasPermission("pvchat.ignore.bypass")) return true;
 
 		final UUID uuid = player.getUniqueId();
 
