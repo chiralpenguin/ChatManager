@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class PostgresConnector extends HikariConnectionFactory {
@@ -69,6 +70,16 @@ public class PostgresConnector extends HikariConnectionFactory {
         locale.ifPresent(user::setLocale);
 
         return user;
+    }
+
+    @Override
+    public int getJoinOrder(@NotNull UUID uuid) {
+        return 0;
+    }
+
+    @Override
+    public String getCreationDate(@NotNull UUID uuid) {
+        return "";
     }
 
     @Override
